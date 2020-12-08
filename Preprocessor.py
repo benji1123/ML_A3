@@ -20,6 +20,10 @@ class Preprocessor:
         X_val, y_val = val_data[:, :num_features], train_data[:, num_features]
         X_test, y_test = test_data[:, :num_features], test_data[:, num_features]
         X_train, X_val, X_test = Preprocessor.normalize(X_train, X_val, X_test)
+        # reshape
+        y_train = np.expand_dims(y_train, axis=1)
+        y_test = np.expand_dims(y_test, axis=1)
+        y_val = np.expand_dims(y_val, axis=1)
         return X_train, y_train, X_val, y_val, X_test, y_test
 
     @staticmethod
