@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Class for neural networks with 2 hidden layers.
-
 References:
 * https://towardsdatascience.com/an-introduction-to-neural-networks-with-implementation-from-scratch-using-python-da4b6a45c05b
 """
@@ -39,7 +40,7 @@ class ThreeLayerNeuralNetwork:
     def get_error(self, X, y):
         forward_pass_vals = self.forward_pass(X.T)
         predictions = forward_pass_vals["layer3_out"].T
-        error = self.mse_cost_function(y_pred=predictions, y=y)
+        error = self.cost_function(y_pred=predictions, y=y)
         return error
 
     def forward_pass(self, X):
@@ -57,7 +58,7 @@ class ThreeLayerNeuralNetwork:
         z[z < 0] = 0
         return z
 
-    def mse_cost_function(self, y_pred, y):
+    def cost_function(self, y_pred, y):
         return 1 / (2 * len(y)) * np.sum(np.square(y_pred - y))
 
     def update_weights(self, grads):
